@@ -7,6 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { BASE_USER_KEY } from "@/features/users/users.constants";
 import { EN } from "@/features/users/components/components.translations";
+import { HighlightTableCell } from "@/features/users/components/users-table.styled";
 
 import type { UserBase, UserId } from "@/features/users/users.types";
 
@@ -42,6 +43,7 @@ type UserRowData = UserBase & UserId;
 
 type UsersTableProps = {
   users: UserRowData[];
+  highlightColumn?: keyof UserBase;
 };
 
 export function UsersTable(props: UsersTableProps) {
@@ -65,10 +67,32 @@ export function UsersTable(props: UsersTableProps) {
             {props.users.map((user) => {
               return (
                 <TableRow hover key={user.id}>
-                  <TableCell>{user.name}</TableCell>
-                  <TableCell>{user.username}</TableCell>
-                  <TableCell>{user.email}</TableCell>
-                  <TableCell>{user.phone}</TableCell>
+                  <HighlightTableCell
+                    isHighlighted={props.highlightColumn === BASE_USER_KEY.NAME}
+                  >
+                    {user.name}
+                  </HighlightTableCell>
+                  <HighlightTableCell
+                    isHighlighted={
+                      props.highlightColumn === BASE_USER_KEY.USERNAME
+                    }
+                  >
+                    {user.username}
+                  </HighlightTableCell>
+                  <HighlightTableCell
+                    isHighlighted={
+                      props.highlightColumn === BASE_USER_KEY.EMAIL
+                    }
+                  >
+                    {user.email}
+                  </HighlightTableCell>
+                  <HighlightTableCell
+                    isHighlighted={
+                      props.highlightColumn === BASE_USER_KEY.PHONE
+                    }
+                  >
+                    {user.phone}
+                  </HighlightTableCell>
                 </TableRow>
               );
             })}

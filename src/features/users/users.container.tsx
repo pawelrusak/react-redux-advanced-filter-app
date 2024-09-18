@@ -46,7 +46,7 @@ export function UsersContainer() {
           onSearchChange={handleSearchChange}
           searchByDefaultValue={DEFAULT_SEARCH_BY}
         />
-        <UsersTable users={users ?? []} />
+        <UsersTable users={users ?? []} highlightColumn={searchBy} />
       </article>
     </main>
   );
