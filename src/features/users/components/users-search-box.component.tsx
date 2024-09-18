@@ -1,3 +1,4 @@
+import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import Paper from "@mui/material/Paper";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -15,6 +16,9 @@ import {
 } from "@/features/users/components/users-search-box.styled";
 import { EN } from "@/features/users/components/components.translations";
 import { BASE_USER_KEY } from "@/features/users/users.constants";
+
+import type { UserBase } from "@/features/users/users.types";
+import type { SelectChangeEvent } from "@mui/material/Select";
 
 type SearchByOption = {
   value: string;
@@ -35,12 +39,25 @@ const SEARCH_BY_OPTION: SearchByOption[] = [
     label: EN.USER_SEARCH_BOX.FIELD.SEARCH_BY.OPTION.EMAIL,
   },
   {
-    value: BASE_USER_KEY.USERNAME,
+    value: BASE_USER_KEY.PHONE,
     label: EN.USER_SEARCH_BOX.FIELD.SEARCH_BY.OPTION.PHONE,
   },
 ];
 
-export function UsersSearchBox() {
+type UserBaseKey = keyof UserBase;
+
+export type SearchBoxSearchByChangeEvent = SelectChangeEvent;
+
+type SearchBoxProps = {
+  searchByDefaultValue: UserBaseKey;
+  searchByValue: string;
+  onSearchByChange: (event: SelectChangeEvent) => void;
+  searchValue: string;
+  onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSearchResetClick: () => void;
+};
+
+export function UsersSearchBox(props: SearchBoxProps) {
   return (
     <Paper style={{ marginBottom: "2rem", minWidth: "50rem" }}>
       <Grid container>
@@ -50,13 +67,18 @@ export function UsersSearchBox() {
               {EN.USER_SEARCH_BOX.FIELD.SEARCH_BY.LABEL}
             </InputLabel>
             <Select
-              defaultValue={20}
+              name="search-by"
               labelId="search-by-input"
               id="demo-simple-select"
+              defaultValue={props.searchByDefaultValue}
+              value={props.searchByValue}
+              onChange={props.onSearchByChange}
               label={EN.USER_SEARCH_BOX.FIELD.SEARCH_BY.LABEL}
             >
               {SEARCH_BY_OPTION.map((option) => (
-                <MenuItem key={option.value}>{option.label}</MenuItem>
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
               ))}
             </Select>
           </LeftFormControl>
@@ -69,6 +91,9 @@ export function UsersSearchBox() {
             <OutlinedInput
               id="search-input"
               type="search"
+              name="search"
+              value={props.searchValue}
+              onChange={props.onSearchChange}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -77,6 +102,7 @@ export function UsersSearchBox() {
                     }
                     edge="end"
                     style={{ marginRight: "0" }}
+                    onClick={props.onSearchResetClick}
                   >
                     <CancelIcon />
                   </IconButton>
