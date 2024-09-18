@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { BASE_USER_KEY } from "@/features/users/users.constants";
+import EN from "@/features/users/components/components.translations";
 
 import type { UserBase, UserId } from "@/features/users/users.types";
 
@@ -20,20 +21,20 @@ interface Column {
 const columns: Column[] = [
   {
     field: BASE_USER_KEY.NAME,
-    label: "Name",
+    label: EN.USER_TABLE.COLUMN_LABEL.NAME,
     minWidth: 150,
   },
   {
     field: BASE_USER_KEY.USERNAME,
-    label: "User name",
+    label: EN.USER_TABLE.COLUMN_LABEL.USERNAME,
   },
   {
     field: BASE_USER_KEY.EMAIL,
-    label: "Email",
+    label: EN.USER_TABLE.COLUMN_LABEL.EMAIL,
   },
   {
     field: BASE_USER_KEY.PHONE,
-    label: "Phone",
+    label: EN.USER_TABLE.COLUMN_LABEL.PHONE,
   },
 ];
 
