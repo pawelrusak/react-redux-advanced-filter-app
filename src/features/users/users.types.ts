@@ -1,5 +1,7 @@
 import { Id, Address, Company } from "@/shared/types";
 
+type UserId = Id;
+
 type UserProfileName = {
   name: string;
   username: string;
@@ -29,4 +31,6 @@ type User = Id &
   UserCompany &
   UserWebsite;
 
-export type { User, UserProfileName, UserContact };
+type UserBase = UserProfileName & UserContact;
+
+export type { User, UserBase, UserId };
