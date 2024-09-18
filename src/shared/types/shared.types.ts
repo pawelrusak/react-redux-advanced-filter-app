@@ -1,5 +1,5 @@
 type Id = {
-  id: string;
+  id: number;
 };
 
 type Geolocation = {
