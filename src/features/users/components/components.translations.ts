@@ -2,7 +2,7 @@ const EN = {
   USER_TABLE: {
     COLUMN_LABEL: {
       NAME: "Name",
-      USERNAME: "User name",
+      USERNAME: "Username",
       EMAIL: "Email",
       PHONE: "Phone",
     },
