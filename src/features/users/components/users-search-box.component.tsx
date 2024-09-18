@@ -46,12 +46,12 @@ const SEARCH_BY_OPTION: SearchByOption[] = [
 
 type UserBaseKey = keyof UserBase;
 
-export type SearchBoxSearchByChangeEvent = SelectChangeEvent;
+export type SearchBoxSearchByChangeEvent = SelectChangeEvent<UserBaseKey>;
 
 type SearchBoxProps = {
   searchByDefaultValue: UserBaseKey;
-  searchByValue: string;
-  onSearchByChange: (event: SelectChangeEvent) => void;
+  searchByValue: UserBaseKey;
+  onSearchByChange: (event: SearchBoxSearchByChangeEvent) => void;
   searchValue: string;
   onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onSearchResetClick: () => void;
