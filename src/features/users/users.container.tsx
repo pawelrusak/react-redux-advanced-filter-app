@@ -1,13 +1,12 @@
 import React from "react";
-import { useGetUsersQuery } from "@/features/users/users.api";
-import { useAppSelector } from "@/store";
+
 import {
   UsersTable,
   UsersSearchBox,
   SkeletonUsersTable,
 } from "@/features/users/components";
 import { BASE_USER_KEY } from "@/features/users/users.constants";
-import { selectFilteredUsers } from "@/features/users/users.selectors";
+import { useGetUsers } from "@/features/users/users.hooks";
 
 import type { UserBase } from "@/features/users/users.types";
 import type { SearchBoxSearchByChangeEvent } from "@/features/users/components";
@@ -21,8 +20,7 @@ export function UsersContainer() {
     React.useState<SearchByKey>(DEFAULT_SEARCH_BY);
   const [search, setSearch] = React.useState<string>("");
 
-  const { isLoading } = useGetUsersQuery();
-  const users = useAppSelector(selectFilteredUsers(searchBy, search));
+  const { isLoading, users } = useGetUsers(searchBy, search);
 
   const handleSearchByChange = (event: SearchBoxSearchByChangeEvent) => {
     setSearchBy(event.target.value as SearchByKey);

@@ -33,4 +33,20 @@ type User = Id &
 
 type UserBase = UserProfileName & UserContact;
 
-export type { User, UserBase, UserId };
+type UserSearchByField = keyof UserBase;
+
+type UseGetUsersHookContract = (
+  searchBy: UserSearchByField,
+  search: string
+) => {
+  isLoading: boolean;
+  users: User[];
+};
+
+export type {
+  User,
+  UserBase,
+  UserId,
+  UseGetUsersHookContract,
+  UserSearchByField,
+};
