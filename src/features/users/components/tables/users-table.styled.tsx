@@ -1,4 +1,4 @@
-import { styled, alpha } from "@mui/material/styles";
+import { styled, lighten, alpha } from "@mui/material/styles";
 import TableCell from "@mui/material/TableCell";
 
 import type { TableCellProps } from "@mui/material/TableCell";
@@ -12,7 +12,7 @@ const HighlightTableCell = styled(TableCell)<HighlightTableCellProps>(
   ({ theme, isHighlighted, isTableHeadCell }) => {
     if (isHighlighted && isTableHeadCell) {
       return {
-        backgroundColor: alpha(theme.palette.action.hover, 0.0),
+        backgroundColor: lighten(theme.palette.background.paper, 0.05),
       };
     }
 
