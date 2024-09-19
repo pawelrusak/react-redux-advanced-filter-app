@@ -63,13 +63,12 @@ export function UsersSearchBox(props: SearchBoxProps) {
       <Grid container>
         <Grid size={4}>
           <LeftFormControl fullWidth>
-            <InputLabel id="search-by-input">
+            <InputLabel htmlFor="search-by-input">
               {EN.USER_SEARCH_BOX.FIELD.SEARCH_BY.LABEL}
             </InputLabel>
             <Select
               name="search-by"
-              labelId="search-by-input"
-              id="demo-simple-select"
+              id="search-by-input"
               defaultValue={props.searchByDefaultValue}
               value={props.searchByValue}
               onChange={props.onSearchByChange}
