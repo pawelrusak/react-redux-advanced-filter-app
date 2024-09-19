@@ -1,7 +1,11 @@
 import React from "react";
 import { useGetUsersQuery } from "@/features/users/users.api";
 import { useAppSelector } from "@/store";
-import { UsersTable, UsersSearchBox } from "@/features/users/components";
+import {
+  UsersTable,
+  UsersSearchBox,
+  SkeletonUsersTable,
+} from "@/features/users/components";
 import { BASE_USER_KEY } from "@/features/users/users.constants";
 import { selectFilteredUsers } from "@/features/users/users.selectors";
 
@@ -16,7 +20,8 @@ export function UsersContainer() {
   const [searchBy, setSearchBy] =
     React.useState<SearchByKey>(DEFAULT_SEARCH_BY);
   const [search, setSearch] = React.useState<string>("");
-  useGetUsersQuery();
+
+  const { isLoading } = useGetUsersQuery();
   const users = useAppSelector(selectFilteredUsers(searchBy, search));
 
   const handleSearchByChange = (event: SearchBoxSearchByChangeEvent) => {
@@ -46,7 +51,11 @@ export function UsersContainer() {
           onSearchChange={handleSearchChange}
           searchByDefaultValue={DEFAULT_SEARCH_BY}
         />
-        <UsersTable users={users ?? []} highlightColumn={searchBy} />
+        {isLoading ? (
+          <SkeletonUsersTable highlightColumn={searchBy} />
+        ) : (
+          <UsersTable users={users ?? []} highlightColumn={searchBy} />
+        )}
       </article>
     </main>
   );
