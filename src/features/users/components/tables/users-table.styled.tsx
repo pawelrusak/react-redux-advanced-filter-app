@@ -12,7 +12,7 @@ const HighlightTableCell = styled(TableCell)<HighlightTableCellProps>(
   ({ theme, isHighlighted, isTableHeadCell }) => {
     if (isHighlighted && isTableHeadCell) {
       return {
-        backgroundColor: alpha(theme.palette.action.hover, 0.01),
+        backgroundColor: alpha(theme.palette.action.hover, 0.0),
       };
     }
 
