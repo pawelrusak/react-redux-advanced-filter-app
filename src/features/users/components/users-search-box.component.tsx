@@ -96,16 +96,20 @@ export function UsersSearchBox(props: SearchBoxProps) {
               onChange={props.onSearchChange}
               endAdornment={
                 <InputAdornment position="end">
-                  <IconButton
-                    aria-label={
-                      EN.USER_SEARCH_BOX.FIELD.SEARCH.RESET_BUTTON.LABEL
-                    }
-                    edge="end"
-                    style={{ marginRight: "0" }}
-                    onClick={props.onSearchResetClick}
-                  >
-                    <CancelIcon />
-                  </IconButton>
+                  {props.searchValue && (
+                    <IconButton
+                      aria-label={
+                        EN.USER_SEARCH_BOX.FIELD.SEARCH.RESET_BUTTON.LABEL
+                      }
+                      edge="end"
+                      style={{
+                        marginRight: "0",
+                      }}
+                      onClick={props.onSearchResetClick}
+                    >
+                      <CancelIcon />
+                    </IconButton>
+                  )}
                   <SearchIcon />
                 </InputAdornment>
               }
