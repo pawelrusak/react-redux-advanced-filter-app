@@ -19,7 +19,8 @@
 - To ensure a high level of user experience for filtering, I didn't implement separate input fields for `name`, `username`, `phone`, and `email`. Instead, I used a select element to choose the field specify and a text input for filtering.
 - Additionally, for better user experience, I added highlighting to the column being searched and also implemented [normalization](/src/shared/utils/strings.utils.ts) for searched strings so that unnecessary characters wouldn't affect the search,
 - I used a feature-based folder structure instead of organizing by types,
-- I treated types as the 'source of truth' and aimed to apply [interface segregation](https://en.wikipedia.org/wiki/Interface_segregation_principle) from [SOLID](https://en.wikipedia.org/wiki/SOLID) principles for shared types, especially for types like [`User`](./src//features//users//users.types.ts)
+- I treated types as the 'source of truth' and aimed to apply [interface segregation](https://en.wikipedia.org/wiki/Interface_segregation_principle) from [SOLID](https://en.wikipedia.org/wiki/SOLID) principles for shared types, especially for types like [`User`](./src//features//users//users.types.ts),
+- I created a skeleton table for the loading state to reduce [Cumulative Layout Shift](https://web.dev/articles/cls?hl=pl) (CLS),
 
 ### Key Challenges
 
