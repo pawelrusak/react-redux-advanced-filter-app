@@ -1,7 +1,7 @@
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { BASE_USER_KEY } from "@/features/users/users.constants";
-import { EN } from "@/features/users/components/components.translations";
+import { EN } from "@/features/users/users.translations";
 import { HighlightTableCell } from "@/features/users/components/tables/users-table.styled";
 
 import type { UserBase } from "@/features/users/users.types";

@@ -14,7 +14,7 @@ import {
   LeftFormControl,
   RightFormControl,
 } from "@/features/users/components/users-search-box.styled";
-import { EN } from "@/features/users/components/components.translations";
+import { EN } from "@/features/users/users.translations";
 import { BASE_USER_KEY } from "@/features/users/users.constants";
 
 import type { UserBase } from "@/features/users/users.types";

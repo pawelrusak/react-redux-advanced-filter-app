@@ -1,4 +1,7 @@
 const EN = {
+  USERS_LAYOUT: {
+    HEADING: "Users",
+  },
   USER_TABLE: {
     COLUMN_LABEL: {
       NAME: "Name",

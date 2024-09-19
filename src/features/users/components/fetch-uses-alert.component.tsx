@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Button from "@mui/material/Button";
-import { EN } from "@/features/users/components/components.translations";
+import { EN } from "@/features/users/users.translations";
 
 type FetchUsesAlertProps = {
   onRefreshClick: () => void;
