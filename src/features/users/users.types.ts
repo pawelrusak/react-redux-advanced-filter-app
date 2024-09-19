@@ -41,6 +41,8 @@ type UseGetUsersHookContract = (
 ) => {
   isLoading: boolean;
   users: User[];
+  refetch: () => void;
+  isError: boolean;
 };
 
 export type {

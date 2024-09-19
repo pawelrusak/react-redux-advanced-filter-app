@@ -26,6 +26,11 @@ const EN = {
       },
     },
   },
+  USER_FETCH_ALERT: {
+    TITLE: "Error",
+    BODY: "Oops... Failed to fetch users :(",
+    REFRESH_BUTTON: "Try again",
+  },
 };
 
 export { EN };

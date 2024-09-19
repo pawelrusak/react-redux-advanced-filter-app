@@ -4,9 +4,11 @@ import {
   UsersTable,
   UsersSearchBox,
   SkeletonUsersTable,
+  FetchUsesAlert,
 } from "@/features/users/components";
 import { BASE_USER_KEY } from "@/features/users/users.constants";
 import { useGetUsers } from "@/features/users/users.hooks";
+import { UsersLayout } from "@/features/users/users.layout";
 
 import type { UserBase } from "@/features/users/users.types";
 import type { SearchBoxSearchByChangeEvent } from "@/features/users/components";
@@ -20,7 +22,7 @@ export function UsersContainer() {
     React.useState<SearchByKey>(DEFAULT_SEARCH_BY);
   const [search, setSearch] = React.useState<string>("");
 
-  const { isLoading, users } = useGetUsers(searchBy, search);
+  const { isLoading, users, refetch, isError } = useGetUsers(searchBy, search);
 
   const handleSearchByChange = (event: SearchBoxSearchByChangeEvent) => {
     setSearchBy(event.target.value as SearchByKey);
@@ -34,12 +36,20 @@ export function UsersContainer() {
     setSearch("");
   };
 
-  return (
-    <main>
-      <header>
-        <h1>Users</h1>
-      </header>
+  const handleRefreshClick = () => {
+    refetch();
+  };
 
+  if (isError) {
+    return (
+      <UsersLayout>
+        <FetchUsesAlert onRefreshClick={handleRefreshClick} />
+      </UsersLayout>
+    );
+  }
+
+  return (
+    <UsersLayout>
       <article>
         <UsersSearchBox
           searchByValue={searchBy}
@@ -55,6 +65,6 @@ export function UsersContainer() {
           <UsersTable users={users ?? []} highlightColumn={searchBy} />
         )}
       </article>
-    </main>
+    </UsersLayout>
   );
 }
