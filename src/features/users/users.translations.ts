@@ -34,6 +34,10 @@ const EN = {
     BODY: "Oops... Failed to fetch users :(",
     REFRESH_BUTTON: "Try again",
   },
+  EMPTY_USER_STATE: {
+    BODY: "No users meet the criteria",
+    CTA_BUTTON: "Reset criteria",
+  },
 };
 
 export { EN };

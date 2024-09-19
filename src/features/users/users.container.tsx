@@ -5,7 +5,9 @@ import {
   UsersSearchBox,
   SkeletonUsersTable,
   FetchUsesAlert,
+  EmptyUsersState,
 } from "@/features/users/components";
+import { normalizeString } from "@/shared/utils";
 import { BASE_USER_KEY } from "@/features/users/users.constants";
 import { useGetUsers } from "@/features/users/users.hooks";
 import { UsersLayout } from "@/features/users/users.layout";
@@ -23,6 +25,10 @@ export function UsersContainer() {
   const [search, setSearch] = React.useState<string>("");
 
   const { isLoading, users, refetch, isError } = useGetUsers(searchBy, search);
+
+  const hasNoUsersMeetingCriteria = React.useMemo(() => {
+    return normalizeString(search).length !== 0 && users.length === 0;
+  }, [search, users.length]);
 
   const handleSearchByChange = (event: SearchBoxSearchByChangeEvent) => {
     setSearchBy(event.target.value as SearchByKey);
@@ -61,6 +67,8 @@ export function UsersContainer() {
         />
         {isLoading ? (
           <SkeletonUsersTable highlightColumn={searchBy} />
+        ) : hasNoUsersMeetingCriteria ? (
+          <EmptyUsersState onSearchResetClick={handleSearchResetClick} />
         ) : (
           <UsersTable users={users ?? []} highlightColumn={searchBy} />
         )}
