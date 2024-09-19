@@ -5,14 +5,23 @@ import type { TableCellProps } from "@mui/material/TableCell";
 
 type HighlightTableCellProps = TableCellProps & {
   isHighlighted?: boolean;
+  isTableHeadCell?: boolean;
 };
 
 const HighlightTableCell = styled(TableCell)<HighlightTableCellProps>(
-  ({ theme, isHighlighted }) => ({
-    backgroundColor: isHighlighted
-      ? alpha(theme.palette.action.hover, 0.07)
-      : "transparent",
-  })
+  ({ theme, isHighlighted, isTableHeadCell }) => {
+    if (isHighlighted && isTableHeadCell) {
+      return {
+        backgroundColor: alpha(theme.palette.action.hover, 0.01),
+      };
+    }
+
+    if (isHighlighted) {
+      return {
+        backgroundColor: alpha(theme.palette.action.hover, 0.06),
+      };
+    }
+  }
 );
 
 export { HighlightTableCell };
